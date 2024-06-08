@@ -10,6 +10,15 @@ O meu primiero passo vai ser desenvolver o algoritmo abaixo
 2 - verifica a quantidade inserida 
 3 - multiplica a quantidade inserida pelo valor do produto 
 4 - adiciona o resultado da multiplicação ao valor final da venda   
+
+Eu vou fazer 3 models
+
+1 - venda 
+2 - produto
+3 - produto venda (que vai ser usado para ligar a venda e o produto)
+ 
+
+
  
  
 
