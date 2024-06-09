@@ -18,12 +18,15 @@ const Produto = require("./models/produto/Produto");
 const Venda = require("./models/venda/Venda");
 const Produto_venda = require("./models/produto_venda/Produto_venda");
 
+//controllers
+const produtoController = require("./models/produto/produtoController");
 
 app.get("/",(req,res)=>{
 
-    res.send("teste");
+    res.render("index");
 
 });
+app.use('/',produtoController);
 
 
 

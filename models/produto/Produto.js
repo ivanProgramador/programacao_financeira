@@ -7,7 +7,7 @@ const Produto = connection.define('produto',{
         allowNull:false
     },
     preco:{    
-        type: Sequelize.DECIMAL,
+        type: Sequelize.DataTypes.DECIMAL(10,2),
         allowNull: false
     },
     tipo:{

@@ -1,0 +1,43 @@
+<%- include('../partials/header.ejs') -%>
+<%- include('../partials/navbar.ejs') -%>
+
+<div class="container">
+    <div class="card">
+        <div class="card-header">
+            <h2 class="card-title">
+                Cadastro de produtos
+            </h2>
+        </div>
+        <div class="card-body">
+            <form action="/produto/cadastrar" method="post">
+
+                <label for="nome">Nome:</label>
+                <input class="form-control" type="text" name="nome"><br>
+                <label for="preco">Preco:</label>
+                <input class="form-control" type="text" name="preco"><br>
+                <label for="tipo">Tipo:</label>
+                <input class="form-control" type="text" name="tipo"><br>
+                <button type="submit" class="btn btn-success">Cadastrar</button>
+            </form>
+        </div>
+        <div class="card-body">
+            <div style="overflow-y: scroll; max-height: 200px;">
+                <ul class="list-group">
+                    <% produtos.forEach(produto=>{ %>
+                        <li class="list-group-item">
+                            <p><%= produto.nome %></p>
+                            <p><%= produto.preco %></p>
+                            <form action="/produto/deletar" method="post">
+                               <input type="hidden" name="id" value="<%= produto.id %>">
+                               <button class="btn btn-danger">apagar</button>
+                            </form>
+                        </li>
+                    <% }) %>
+
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<%- include('../partials/footer.ejs') -%>
