@@ -20,13 +20,12 @@ const Produto_venda = require("./models/produto_venda/Produto_venda");
 
 //controllers
 const produtoController = require("./models/produto/produtoController");
+const sequenciaController = require("./models/sequencia/sequencia_controller");
 
-app.get("/",(req,res)=>{
+app.get("/",(req,res)=>{res.render("index");});
 
-    res.render("index");
-
-});
 app.use('/',produtoController);
+app.use('/',sequenciaController);
 
 
 

@@ -4,8 +4,13 @@ const connection = require('../../database/database');
 const Venda = connection.define('venda',{
     valor:{
         type: Sequelize.DOUBLE,
-        allowNull:false
-    }
+        allowNull:true
+    },
+    cliente:{
+        type: Sequelize.STRING,
+        allowNull:true
+    },
+    
 });
 
 Venda.sync({force:false});

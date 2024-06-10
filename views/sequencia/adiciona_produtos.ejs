@@ -1,0 +1,102 @@
+<%- include('../partials/header.ejs') -%>
+<%- include('../partials/navbar.ejs') -%>
+
+
+
+<div class="container" >
+ <div class="row">
+    <div class="card">
+        <div class="card-header">
+            <h4>Produtos disponiveis</h4>
+            <div>
+                <p>dados da venda</p>
+                
+            </div>
+        </div>
+        <div style="overflow-x: scroll; max-height: 650px; scrollbar-width: thin;" class="card-body">
+            
+            <ul class="list-group">
+                <% produtos.forEach(produto=>{ %>
+                    <li class="list-group-item">
+                       
+                        <form action="/produto_venda/cadastrar" method="post">
+
+                            <input  type="hidden" name="produtoId" value="<%= produto.id %>">
+                            <input  type="hidden" name="vendaId" value="<%= venda_atual.id %>">
+
+                            <input  class="form-control" type="text" value="<%= produto.nome %>"readonly>
+
+                            <input class="form-control" type="text" value="<%= produto.preco %>"readonly>
+
+                            <label for="quantidade">QTD</label>
+
+                            <input class="form-control" type="number" name="quantidade">
+
+                            <button type="submit" class="btn btn-success">Adicionar</button>
+
+                        </form>
+                    </li>
+                <% }) %>
+            </ul>
+        </div>
+    </div>
+ 
+    <div class="card ml-3">
+        <div class="card-header">
+            <div class="card-title">
+                <h4>Produtos da venda</h4>
+                <div style="background-color: #ccc; box-shadow: 0em; padding: 10px; border-radius: 5px;" >
+                    <p>cliente: <%= venda_atual.cliente %></p>
+                    <p>id da venda: <%= venda_atual.id %></p>
+
+                </div>
+                
+              
+
+            </div>
+            
+           
+        </div>
+        <div style="overflow-x: scroll; max-height: 600px; scrollbar-width: thin;" class="card-body">
+            
+            <ul class="list-group">
+
+                <% produtos_vendidos.forEach(produto_vendido=>{ %> 
+                   <li class="list-group-item"> 
+                    <p> <%= produto_vendido.id %>      </p>
+                    <p> <%= produto_vendido.produto.id %>   </p>
+                    <p> <%= produto_vendido.vendaId %> </p>
+                    </li>    
+                <% }) %>
+               
+            </ul>
+        </div>
+
+        <div class="card-footer">
+            <label for="valor">Valor Venda</label>
+            <input type="text" name="valor" readonly> 
+            <form action="" method="post">
+                <button class="btn btn-success form-control ">Fechar Venda</button>
+            </form>
+
+        </div>
+    </div>
+
+</div>
+
+ 
+   
+            
+
+
+
+        
+
+
+
+
+</div>
+
+
+
+<%- include('../partials/footer.ejs') -%>
