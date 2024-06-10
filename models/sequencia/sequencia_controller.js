@@ -26,10 +26,33 @@ router.get("/adiciona_produto",(req,res)=>{
 
   /*
    preciso trazer 
-   Venda
+   Venda ok
    Produtos 
    produto vendido 
   */
+
+   Venda.findOne({
+     order:[['createdAt','DESC']]
+   }).then(venda=>{
+
+     let venda_id = venda.id;
+
+     Produto.findAll().then(produtos=>{
+        Produto_venda.findAll({where:{vendaId:venda_id},include:[{model:Produto}]}).then(produtos_vendidos=>{
+
+          
+
+            res.render('sequencia/adiciona_produtos',{produtos:produtos,venda:venda,produtos_vendidos});
+
+          
+
+          
+
+        
+
+        });
+     });
+   });
 
    
 

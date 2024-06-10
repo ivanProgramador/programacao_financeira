@@ -22,7 +22,7 @@
                         <form action="/produto_venda/cadastrar" method="post">
 
                             <input  type="hidden" name="produtoId" value="<%= produto.id %>">
-                            <input  type="hidden" name="vendaId" value="<%= venda_atual.id %>">
+                            <input  type="hidden" name="vendaId" value="<%= venda.id %>">
 
                             <input  class="form-control" type="text" value="<%= produto.nome %>"readonly>
 
@@ -46,8 +46,8 @@
             <div class="card-title">
                 <h4>Produtos da venda</h4>
                 <div style="background-color: #ccc; box-shadow: 0em; padding: 10px; border-radius: 5px;" >
-                    <p>cliente: <%= venda_atual.cliente %></p>
-                    <p>id da venda: <%= venda_atual.id %></p>
+                    <p>cliente: <%= venda.cliente %></p>
+                    <p>id da venda: <%= venda.id %></p>
 
                 </div>
                 
@@ -63,10 +63,8 @@
 
                 <% produtos_vendidos.forEach(produto_vendido=>{ %> 
                    <li class="list-group-item"> 
-                    <p> <%= produto_vendido.id %>      </p>
-                    <p> <%= produto_vendido.produto.id %>   </p>
-                    <p> <%= produto_vendido.vendaId %> </p>
-                    </li>    
+                    <p> <%= produto_vendido.id %>  <%= produto_vendido.produto.nome %> <div id="preco_final" value="<%= produto_vendido.preco %>" ></div>   </p>
+                   </li>    
                 <% }) %>
                
             </ul>
@@ -74,7 +72,7 @@
 
         <div class="card-footer">
             <label for="valor">Valor Venda</label>
-            <input type="text" name="valor" readonly> 
+            <input type="text" name="valor" value="<%= soma %>" readonly> 
             <form action="" method="post">
                 <button class="btn btn-success form-control ">Fechar Venda</button>
             </form>
@@ -83,6 +81,7 @@
     </div>
 
 </div>
+
 
  
    
