@@ -63,7 +63,8 @@
 
                 <% produtos_vendidos.forEach(produto_vendido=>{ %> 
                    <li class="list-group-item"> 
-                    <p> <%= produto_vendido.id %>  <%= produto_vendido.produto.nome %> <div id="preco_final" value="<%= produto_vendido.preco %>" ></div>   </p>
+                    <p>    <%= produto_vendido.produto.nome %> <div class="produto" data-quantidade="<%= produto_vendido.quantidade %>" data-preco=" <%= produto_vendido.produto.preco %>" > </div>  </p><br>
+                    <p<% produto_vendido * produto_vendido.quantidade %><p>
                    </li>    
                 <% }) %>
                
@@ -72,7 +73,7 @@
 
         <div class="card-footer">
             <label for="valor">Valor Venda</label>
-            <input type="text" name="valor" value="<%= soma %>" readonly> 
+            <div class="btn btn-success mr-3" id="valor_total" name="valor" ></div> 
             <form action="" method="post">
                 <button class="btn btn-success form-control ">Fechar Venda</button>
             </form>
@@ -81,20 +82,28 @@
     </div>
 
 </div>
-
-
- 
-   
-            
-
-
-
-        
-
-
-
-
 </div>
+
+<script>
+    function somarPrecos(){
+        const produtos = document.querySelectorAll('.produto');
+        let totalPreco = 0;
+        produtos.forEach(produto=>{
+            const preco = parseFloat(produto.getAttribute('data-preco'));
+            const quantidade = parseInt(produto.getAttribute('data-quantidade'),10);
+            totalPreco += preco * quantidade;
+        });
+
+        document.getElementById('valor_total').innerHTML = totalPreco;
+
+        console.log(`O total dos preços é ${totalPreco.toFixed(2)}`);
+    }
+
+    somarPrecos();
+
+</script>
+
+
 
 
 

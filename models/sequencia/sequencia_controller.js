@@ -38,7 +38,11 @@ router.get("/adiciona_produto",(req,res)=>{
      let venda_id = venda.id;
 
      Produto.findAll().then(produtos=>{
+
+
         Produto_venda.findAll({where:{vendaId:venda_id},include:[{model:Produto}]}).then(produtos_vendidos=>{
+
+
 
           
 
@@ -61,12 +65,24 @@ router.get("/adiciona_produto",(req,res)=>{
   
 });
 
-router.post('/produto_venda/cadastrar',(req,res)=>{
+router.post('/produto_venda/cadastrar',async (req,res)=>{
 
   var{quantidade, produtoId,vendaId}= req.body;
+  
 
-  Produto_venda.create({quantidade:quantidade,produtoId:produtoId,vendaId:vendaId}).then(()=>{
+ await Produto_venda.create({quantidade:quantidade,produtoId:produtoId,vendaId:vendaId}).then(()=>{
+
+  Produto_venda.findAll({include:[{model:Produto}]}).then(produtos_vendidos=>{
+
+   
     res.redirect("/adiciona_produto");
+
+  });
+
+      
+
+  
+    
   });
 
   
