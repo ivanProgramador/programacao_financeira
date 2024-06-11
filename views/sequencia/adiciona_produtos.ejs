@@ -73,8 +73,13 @@
 
         <div class="card-footer">
             <label for="valor">Valor Venda</label>
-            <div class="btn btn-success mr-3" id="valor_total" name="valor" ></div> 
-            <form action="" method="post">
+            
+            <form action="/fechar_venda" method="post">
+                <input type="hidden" value="<%= venda.id %>" name="id">
+                <input type="hidden" value="2" name="situacao">
+                <input type="hidden" id="input_total" name="valor">
+                <div id="valor_total" ></div>
+
                 <button class="btn btn-success form-control ">Fechar Venda</button>
             </form>
 
@@ -95,6 +100,7 @@
         });
 
         document.getElementById('valor_total').innerHTML = totalPreco;
+        document.getElementById('input_total').value = totalPreco;
 
         console.log(`O total dos preços é ${totalPreco.toFixed(2)}`);
     }

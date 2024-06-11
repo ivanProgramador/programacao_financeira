@@ -10,6 +10,9 @@ const Venda = connection.define('venda',{
         type: Sequelize.STRING,
         allowNull:true
     },
+    situacao:{
+        type: Sequelize.INTEGER
+    }
     
 });
 

@@ -7,8 +7,9 @@ const { where } = require("sequelize");
 
 /*
 Sequencia de venda 
-1 - iniciar a venda(grava a venda)
-2 - vai para a pagina de adicionar produtos 
+1 - iniciar a venda(grava a venda) OK
+2 - vai para a pagina de adicionar produtos OK
+3 - adiciona produtos ok 
 */
 
 router.get("/inicio",(req,res)=>{
@@ -38,31 +39,14 @@ router.get("/adiciona_produto",(req,res)=>{
      let venda_id = venda.id;
 
      Produto.findAll().then(produtos=>{
-
-
         Produto_venda.findAll({where:{vendaId:venda_id},include:[{model:Produto}]}).then(produtos_vendidos=>{
-
-
-
-          
-
-            res.render('sequencia/adiciona_produtos',{produtos:produtos,venda:venda,produtos_vendidos});
-
-          
-
-          
-
         
 
+            res.render('sequencia/adiciona_produtos',{produtos:produtos,venda:venda,produtos_vendidos});
+      
         });
      });
    });
-
-   
-
-
-
-  
 });
 
 router.post('/produto_venda/cadastrar',async (req,res)=>{
@@ -86,6 +70,30 @@ router.post('/produto_venda/cadastrar',async (req,res)=>{
   });
 
   
+
+});
+
+
+router.post('/fechar_venda',(req,res)=>{
+
+  /*
+   A venda possui 3 situações
+   0 aberta 
+   1 em andamento 
+   2 fechada
+  */
+
+   var{id, situacao, valor} = req.body;
+
+   Venda.update({situacao:situacao,valor:valor},{where:{id:id}}).then(()=>{
+     res.redirect('/');
+   });
+
+
+
+
+
+
 
 });
 
